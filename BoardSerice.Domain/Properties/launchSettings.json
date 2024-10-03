@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "BoardSerice.Domain": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}
