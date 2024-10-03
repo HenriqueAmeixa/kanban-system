@@ -3,7 +3,7 @@ namespace BoardService.Domain.Entities
 {
     public class Column
     {
-        public Guid Id { get; set; } 
+        public int Id { get; set; } 
 
         public string Name { get; set; }  
 
@@ -12,6 +12,6 @@ namespace BoardService.Domain.Entities
         public Guid BoardId { get; set; } 
         public Board Board { get; set; } 
 
-        public ICollection<Task> Tasks { get; set; } = new List<Task>();
+        public ICollection<KanbanTask> Tasks { get; set; } = new List<KanbanTask>();
     }
 }

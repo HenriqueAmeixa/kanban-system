@@ -3,7 +3,7 @@ namespace BoardService.Domain.Entities
 {
     public class Board
     {
-        public Guid Id { get; set; }  // Identificador único do Board
+        public int Id { get; set; }  // Identificador único do Board
 
         public string Name { get; set; }  // Nome do quadro
 

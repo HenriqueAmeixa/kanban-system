@@ -9,13 +9,13 @@ namespace BoardService.Infrastructure.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<UserBoard> builder)
         {
-            builder.HasKey(ub => new { ub.UserId, ub.BoardId });  // Definindo a chave composta
+            builder.HasKey(ub => new { ub.UserId, ub.BoardId });
 
             // Relacionamento com o User
             builder.HasOne(ub => ub.User)
                    .WithMany(u => u.UserBoards)
                    .HasForeignKey(ub => ub.UserId)
-                   .OnDelete(DeleteBehavior.Cascade);  // Cascading delete nos relacionamentos
+                   .OnDelete(DeleteBehavior.Cascade);
 
             // Relacionamento com o Board
             builder.HasOne(ub => ub.Board)

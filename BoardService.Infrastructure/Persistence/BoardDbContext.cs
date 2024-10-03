@@ -1,4 +1,6 @@
 ﻿using BoardService.Domain.Entities;
+using BoardService.Infrastructure.Configurations;
+using BoardService.Infrastructure.Persistence.Configurations;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -21,6 +23,11 @@ namespace BoardService.Infrastructure.Persistence
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(BoardDbContext).Assembly);
             base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new BoardConfiguration());
+            modelBuilder.ApplyConfiguration(new UserBoardConfiguration());
+            modelBuilder.ApplyConfiguration(new KanbanTaskConfiguration());
+            modelBuilder.ApplyConfiguration(new ColumnConfiguration());
         }
     }
 }
