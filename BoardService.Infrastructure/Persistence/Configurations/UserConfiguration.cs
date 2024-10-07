@@ -25,7 +25,7 @@ namespace BoardService.Infrastructure.Configurations
             builder.HasMany(u => u.UserBoards)
                    .WithOne(ub => ub.User)
                    .HasForeignKey(ub => ub.UserId)
-                   .OnDelete(DeleteBehavior.Cascade);  
+                   .OnDelete(DeleteBehavior.Restrict);  
         }
     }
 }

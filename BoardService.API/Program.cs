@@ -1,3 +1,5 @@
+using BoardService.Application.Repositories;
+using BoardService.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<BoardDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("KanbanDb")));
+builder.Services.AddScoped<KanbanRepository>();
 
 var app = builder.Build();
 

@@ -3,17 +3,18 @@ namespace BoardService.Domain.Entities
 {
     public class Board
     {
-        public int Id { get; set; }  // Identificador único do Board
+        public int Id { get; set; } 
 
-        public string Name { get; set; }  // Nome do quadro
+        public string Name { get; set; }  
 
-        public Guid OrganizationId { get; set; }  // Identificador da organização que possui o Board
+        public int OrganizationId { get; set; } 
 
-        public ICollection<Column> Columns { get; set; } = new List<Column>();  // Colunas dentro do Board
+        public ICollection<Column> Columns { get; set; } = new List<Column>();  
 
-        public ICollection<UserBoard> UserBoards { get; set; } = new List<UserBoard>();  // Relacionamento com usuários
+        public ICollection<UserBoard> UserBoards { get; set; } = new List<UserBoard>();  
+        public ICollection<KanbanTask> KanbanTasks { get; set; } = new List<KanbanTask>();
 
-        public DateTime CreatedAt { get; set; }  // Data de criação do Board
+        public DateTime CreatedAt { get; set; } 
 
         public DateTime UpdatedAt { get; set; }
     }
