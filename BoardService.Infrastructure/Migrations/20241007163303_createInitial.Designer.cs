@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BoardService.Infrastructure.Migrations
 {
     [DbContext(typeof(BoardDbContext))]
-    [Migration("20241004110124_MigrationInicial5")]
-    partial class MigrationInicial5
+    [Migration("20241007163303_createInitial")]
+    partial class createInitial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -86,7 +86,7 @@ namespace BoardService.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BoardId")
+                    b.Property<int?>("BoardId")
                         .HasColumnType("int");
 
                     b.Property<int>("ColumnId")
@@ -108,7 +108,7 @@ namespace BoardService.Infrastructure.Migrations
 
                     b.HasIndex("ColumnId");
 
-                    b.ToTable("Tasks");
+                    b.ToTable("KanbanTasks");
                 });
 
             modelBuilder.Entity("BoardService.Domain.Entities.User", b =>
@@ -164,7 +164,7 @@ namespace BoardService.Infrastructure.Migrations
                     b.HasOne("BoardService.Domain.Entities.Board", "Board")
                         .WithMany("Columns")
                         .HasForeignKey("BoardId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Board");
@@ -172,19 +172,15 @@ namespace BoardService.Infrastructure.Migrations
 
             modelBuilder.Entity("BoardService.Domain.Entities.KanbanTask", b =>
                 {
-                    b.HasOne("BoardService.Domain.Entities.Board", "Board")
-                        .WithMany()
-                        .HasForeignKey("BoardId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("BoardService.Domain.Entities.Board", null)
+                        .WithMany("KanbanTasks")
+                        .HasForeignKey("BoardId");
 
                     b.HasOne("BoardService.Domain.Entities.Column", "Column")
                         .WithMany("KanbanTasks")
                         .HasForeignKey("ColumnId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.Navigation("Board");
 
                     b.Navigation("Column");
                 });
@@ -211,6 +207,8 @@ namespace BoardService.Infrastructure.Migrations
             modelBuilder.Entity("BoardService.Domain.Entities.Board", b =>
                 {
                     b.Navigation("Columns");
+
+                    b.Navigation("KanbanTasks");
 
                     b.Navigation("UserBoards");
                 });

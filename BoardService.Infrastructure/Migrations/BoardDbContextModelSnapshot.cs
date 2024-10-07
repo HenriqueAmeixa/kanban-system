@@ -83,7 +83,7 @@ namespace BoardService.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BoardId")
+                    b.Property<int?>("BoardId")
                         .HasColumnType("int");
 
                     b.Property<int>("ColumnId")
@@ -105,7 +105,7 @@ namespace BoardService.Infrastructure.Migrations
 
                     b.HasIndex("ColumnId");
 
-                    b.ToTable("Tasks");
+                    b.ToTable("KanbanTasks");
                 });
 
             modelBuilder.Entity("BoardService.Domain.Entities.User", b =>
@@ -169,19 +169,15 @@ namespace BoardService.Infrastructure.Migrations
 
             modelBuilder.Entity("BoardService.Domain.Entities.KanbanTask", b =>
                 {
-                    b.HasOne("BoardService.Domain.Entities.Board", "Board")
+                    b.HasOne("BoardService.Domain.Entities.Board", null)
                         .WithMany("KanbanTasks")
-                        .HasForeignKey("BoardId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BoardId");
 
                     b.HasOne("BoardService.Domain.Entities.Column", "Column")
                         .WithMany("KanbanTasks")
                         .HasForeignKey("ColumnId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.Navigation("Board");
 
                     b.Navigation("Column");
                 });

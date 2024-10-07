@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BoardService.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class MigrationInicial : Migration
+    public partial class createInitial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -89,7 +89,7 @@ namespace BoardService.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tasks",
+                name: "KanbanTasks",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -97,23 +97,22 @@ namespace BoardService.Infrastructure.Migrations
                     ColumnId = table.Column<int>(type: "int", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    BoardId = table.Column<int>(type: "int", nullable: false)
+                    BoardId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tasks", x => x.Id);
+                    table.PrimaryKey("PK_KanbanTasks", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Tasks_Boards_BoardId",
+                        name: "FK_KanbanTasks_Boards_BoardId",
                         column: x => x.BoardId,
                         principalTable: "Boards",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Tasks_Columns_ColumnId",
+                        name: "FK_KanbanTasks_Columns_ColumnId",
                         column: x => x.ColumnId,
                         principalTable: "Columns",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -122,13 +121,13 @@ namespace BoardService.Infrastructure.Migrations
                 column: "BoardId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tasks_BoardId",
-                table: "Tasks",
+                name: "IX_KanbanTasks_BoardId",
+                table: "KanbanTasks",
                 column: "BoardId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tasks_ColumnId",
-                table: "Tasks",
+                name: "IX_KanbanTasks_ColumnId",
+                table: "KanbanTasks",
                 column: "ColumnId");
 
             migrationBuilder.CreateIndex(
@@ -147,7 +146,7 @@ namespace BoardService.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Tasks");
+                name: "KanbanTasks");
 
             migrationBuilder.DropTable(
                 name: "UserBoards");

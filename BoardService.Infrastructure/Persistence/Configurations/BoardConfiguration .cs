@@ -20,6 +20,7 @@ namespace BoardService.Infrastructure.Persistence.Configurations
                 .HasForeignKey(c => c.BoardId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+
             builder.HasMany(b => b.UserBoards)
                 .WithOne(ub => ub.Board)
                 .HasForeignKey(ub => ub.BoardId)

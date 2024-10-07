@@ -16,7 +16,7 @@ namespace BoardService.Infrastructure.Persistence
 
         public DbSet<Board> Boards { get; set; }
         public DbSet<Column> Columns { get; set; }
-        public DbSet<KanbanTask> Tasks { get; set; }
+        public DbSet<KanbanTask> KanbanTasks { get; set; }
         public DbSet<UserBoard> UserBoards { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BoardService.Domain.Entities;
+using System.Reflection.Emit;
 
 namespace BoardService.Infrastructure.Persistence.Configurations
 {
@@ -23,10 +24,14 @@ namespace BoardService.Infrastructure.Persistence.Configurations
                    .IsRequired();
 
    
+            builder.HasMany(c => c.KanbanTasks)
+                   .WithOne(t => t.Column)
+                   .HasForeignKey(t => t.ColumnId)
+                   .OnDelete(DeleteBehavior.Restrict);
+
             builder.HasOne(c => c.Board)
                    .WithMany(b => b.Columns)
-                   .HasForeignKey(c => c.BoardId)
-                   .OnDelete(DeleteBehavior.Cascade);  
+                   .HasForeignKey(c => c.BoardId);
         }
     }
 }

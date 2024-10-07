@@ -22,15 +22,11 @@ namespace BoardService.Infrastructure.Persistence.Configurations
             builder.Property(t => t.Description)
                    .HasMaxLength(500);  
 
+
             builder.HasOne(t => t.Column)
                    .WithMany(c => c.KanbanTasks)
                    .HasForeignKey(t => t.ColumnId)
-                   .OnDelete(DeleteBehavior.Cascade);
-
-            builder.HasOne(t => t.Board)
-                   .WithMany(t => t.KanbanTasks)
-                   .HasForeignKey(t => t.BoardId)
-                   .OnDelete(DeleteBehavior.Cascade);
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
