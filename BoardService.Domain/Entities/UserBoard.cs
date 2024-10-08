@@ -1,5 +1,4 @@
-﻿
-using BoardService.Domain.Exceptions;
+﻿using BoardService.Domain.Exceptions;
 
 namespace BoardService.Domain.Entities
 {

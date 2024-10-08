@@ -1,11 +1,6 @@
 ﻿using BoardService.Domain.Entities;
 using BoardService.Domain.Exceptions;
 using FluentAssertions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BoardService.Tests.Domain
 {
@@ -73,6 +68,21 @@ namespace BoardService.Tests.Domain
 
             // Assert
             task.ColumnId.Should().Be(columnId);
+        }
+        [Fact]
+        public void KanbanTask_Should_Throw_KanbanTaskColumnNotFoundException_When_ColumnId_Is_Invalid()
+        {
+            // Arrange
+            string taskTitle = "Test Task";
+            string taskDescription = "This is a test task";
+            int invalidColumnId = 0;
+
+            // Act
+            Action act = () => new KanbanTask(taskTitle, taskDescription, invalidColumnId);
+
+            // Assert
+            act.Should().Throw<KanbanTaskColumnNotFoundException>()
+               .WithMessage($"The column with ID '{invalidColumnId}' was not found.");
         }
     }
 }

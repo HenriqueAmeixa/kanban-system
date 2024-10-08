@@ -1,5 +1,4 @@
-﻿
-using BoardService.Domain.Exceptions;
+﻿using BoardService.Domain.Exceptions;
 
 namespace BoardService.Domain.Entities
 {
@@ -45,7 +44,8 @@ namespace BoardService.Domain.Entities
 
         public void SetBoard(int boardId)
         {
-            if (boardId == null)
+
+            if (boardId == null || boardId == 0)
             {
                 throw new BoardNotFoundException(boardId);
             }

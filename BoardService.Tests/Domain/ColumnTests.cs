@@ -55,5 +55,20 @@ namespace BoardService.Tests.Domain
             act.Should().Throw<ColumnException>()
                .WithMessage($"The column name '{name}' is invalid. It must be between 3 and 100 characters.");
         }
+        [Fact]
+        public void Column_Should_Throw_BoardNotFoundException_When_BoardId_Is_Invalid()
+        {
+            // Arrange
+            string columnName = "Test Column";
+            int columnOrder = 1;
+            int invalidBoardId = 0;
+
+            // Act
+            Action act = () => new Column(columnName, columnOrder, invalidBoardId);
+
+            // Assert
+            act.Should().Throw<BoardNotFoundException>()
+               .WithMessage($"The board with ID '{invalidBoardId}' was not found.");
+        }
     }
 }

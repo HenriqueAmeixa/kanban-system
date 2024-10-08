@@ -44,7 +44,7 @@ namespace BoardService.Domain.Entities
         // Validação e definição da coluna
         public void SetColumn(int columnId)
         {
-            if (columnId == null)
+            if (columnId == null || columnId <= 0)
             {
                 throw new KanbanTaskColumnNotFoundException(columnId);
             }
