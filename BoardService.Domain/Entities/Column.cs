@@ -1,17 +1,57 @@
 ﻿
+using BoardService.Domain.Exceptions;
+
 namespace BoardService.Domain.Entities
 {
     public class Column
     {
-        public int Id { get; set; } 
+        public int Id { get; private set; } 
 
-        public string Name { get; set; }  
+        public string Name { get; private set; }  
 
-        public int Order { get; set; } 
+        public int Order { get; private set; } 
 
-        public int BoardId { get; set; } 
-        public Board Board { get; set; } 
+        public int BoardId { get; private set; } 
+        public Board Board { get; private set; } 
 
-        public ICollection<KanbanTask> KanbanTasks { get; set; } = new List<KanbanTask>();
+        public ICollection<KanbanTask> KanbanTasks { get; private set; } = new List<KanbanTask>();
+
+        public Column(string name, int order, int boardId, Board board)
+        {
+            SetName(name);
+            SetOrder(order);
+            SetBoard(boardId, board);
+        }
+
+        public void SetName(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name) || name.Length < 3 || name.Length > 100)
+            {
+                throw new InvalidColumnNameException(name);
+            }
+
+            Name = name;
+        }
+
+        public void SetOrder(int order)
+        {
+            if (order <= 0)
+            {
+                throw new InvalidColumnOrderException(order);
+            }
+
+            Order = order;
+        }
+
+        public void SetBoard(int boardId, Board board)
+        {
+            if (board == null)
+            {
+                throw new BoardNotFoundException(boardId);
+            }
+
+            BoardId = boardId;
+            Board = board;
+        }
     }
 }
