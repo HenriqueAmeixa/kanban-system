@@ -15,6 +15,10 @@ namespace BoardService.Infrastructure.Persistence.Configurations
                 .IsRequired()
                 .HasMaxLength(100);
 
+            builder.Property(b => b.Description)
+                .IsRequired()
+                .HasMaxLength(500);
+
             builder.HasMany(b => b.Columns)
                 .WithOne(c => c.Board)
                 .HasForeignKey(c => c.BoardId)
