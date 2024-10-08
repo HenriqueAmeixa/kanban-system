@@ -27,4 +27,14 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Application\" />
+    <Folder Include="Infrastructure\" />
+    <Folder Include="API\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BoardService.Domain\BoardService.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
