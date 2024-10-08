@@ -18,17 +18,14 @@ namespace BoardService.Tests.Domain
             var title = "Task 1";
             var description = "Complete the task";
             var columnId = 1;
-            var board = new Board("Project Board", "Board for managing project tasks", 1); 
-            var column = new Column("To Do", 1, 1, board); 
 
             // Act
-            var task = new KanbanTask(title, description, columnId, column);
+            var task = new KanbanTask(title, description, columnId);
 
             // Assert
             task.Title.Should().Be(title);
             task.Description.Should().Be(description);
             task.ColumnId.Should().Be(columnId);
-            task.Column.Should().Be(column);
         }
 
         [Fact]
@@ -38,11 +35,9 @@ namespace BoardService.Tests.Domain
             var title = "T";
             var description = "Complete the task";
             var columnId = 1;
-            var board = new Board("Project Board", "Board for managing project tasks", 1);
-            var column = new Column("To Do", 1, 1, board);
 
             // Act
-            Action act = () => new KanbanTask(title, description, columnId, column);
+            Action act = () => new KanbanTask(title, description, columnId);
 
             // Assert
             act.Should().Throw<KanbanTaskException>()
@@ -56,11 +51,9 @@ namespace BoardService.Tests.Domain
             var title = new string('A', 201);
             var description = "Complete the task";
             var columnId = 1;
-            var board = new Board("Project Board", "Board for managing project tasks", 1);
-            var column = new Column("To Do", 1, 1, board);
 
             // Act
-            Action act = () => new KanbanTask(title, description, columnId, column);
+            Action act = () => new KanbanTask(title, description, columnId);
 
             // Assert
             act.Should().Throw<KanbanTaskException>()
@@ -74,16 +67,12 @@ namespace BoardService.Tests.Domain
             var title = "Task 1";
             var description = "Complete the task";
             var columnId = 1;
-            var board = new Board("Project Board", "Board for managing project tasks", 1);
-            var column = new Column("To Do", 1, 1, board);
 
             // Act
-            var task = new KanbanTask(title, description, columnId, column);
+            var task = new KanbanTask(title, description, columnId);
 
             // Assert
             task.ColumnId.Should().Be(columnId);
-            task.Column.Should().Be(column);
-            task.Column.Name.Should().Be("To Do");
         }
     }
 }

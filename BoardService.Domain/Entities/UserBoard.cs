@@ -13,33 +13,31 @@ namespace BoardService.Domain.Entities
 
         public bool IsAdmin { get; private set; }
 
-        public UserBoard(int userId, User user, int boardId, Board board, bool isAdmin)
+        public UserBoard(int userId, int boardId, bool isAdmin)
         {
-            SetUser(userId, user);
-            SetBoard(boardId, board);
+            SetUser(userId);
+            SetBoard(boardId);
             SetIsAdmin(isAdmin);
         }
 
-        public void SetUser(int userId, User user)
+        public void SetUser(int userId)
         {
-            if (user == null)
+            if (userId == null)
             {
                 throw new UserNotFoundException(userId);
             }
 
             UserId = userId;
-            User = user;
         }
 
-        public void SetBoard(int boardId, Board board)
+        public void SetBoard(int boardId)
         {
-            if (board == null)
+            if (boardId == null)
             {
                 throw new BoardNotFoundException(boardId);
             }
 
             BoardId = boardId;
-            Board = board;
         }
 
         public void SetIsAdmin(bool isAdmin)

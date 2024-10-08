@@ -12,11 +12,11 @@ namespace BoardService.Domain.Entities
         public Column Column { get; private set; }
 
 
-        public KanbanTask(string title, string description, int columnId, Column column)
+        public KanbanTask(string title, string description, int columnId)
         {
             SetTitle(title);
             SetDescription(description);
-            SetColumn(columnId, column);
+            SetColumn(columnId);
         }
 
         // Validação e definição do título
@@ -42,15 +42,14 @@ namespace BoardService.Domain.Entities
         }
 
         // Validação e definição da coluna
-        public void SetColumn(int columnId, Column column)
+        public void SetColumn(int columnId)
         {
-            if (column == null)
+            if (columnId == null)
             {
                 throw new KanbanTaskColumnNotFoundException(columnId);
             }
 
             ColumnId = columnId;
-            Column = column;
         }
     }
 }

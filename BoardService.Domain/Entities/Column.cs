@@ -16,11 +16,11 @@ namespace BoardService.Domain.Entities
 
         public ICollection<KanbanTask> KanbanTasks { get; private set; } = new List<KanbanTask>();
 
-        public Column(string name, int order, int boardId, Board board)
+        public Column(string name, int order, int boardId)
         {
             SetName(name);
             SetOrder(order);
-            SetBoard(boardId, board);
+            SetBoard(boardId);
         }
 
         public void SetName(string name)
@@ -43,15 +43,14 @@ namespace BoardService.Domain.Entities
             Order = order;
         }
 
-        public void SetBoard(int boardId, Board board)
+        public void SetBoard(int boardId)
         {
-            if (board == null)
+            if (boardId == null)
             {
                 throw new BoardNotFoundException(boardId);
             }
 
             BoardId = boardId;
-            Board = board;
         }
     }
 }

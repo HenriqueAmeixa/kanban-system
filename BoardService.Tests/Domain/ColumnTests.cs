@@ -14,20 +14,15 @@ namespace BoardService.Tests.Domain
             var order = 1;
             var boardId = 1;
 
-            var boardName = "Project Board";
-            var boardDescription = "Board for managing project tasks";
-            var organizationId = 1;
-
             // Act
-            var board = new Board(boardName, boardDescription, organizationId);
-            var column = new Column(name, order, boardId, board);
+
+            var column = new Column(name, order, boardId);
 
 
             // Assert
             column.Name.Should().Be(name);
             column.Order.Should().Be(order);
             column.BoardId.Should().Be(boardId);
-            column.Board.Should().Be(board);
         }
 
         [Fact]
@@ -37,13 +32,9 @@ namespace BoardService.Tests.Domain
             var name = "T";
             var order = 1;
             var boardId = 1;
-            var boardName = "Project Board";
-            var boardDescription = "Board for managing project tasks";
-            var organizationId = 1;
 
             // Act
-            var board = new Board(boardName, boardDescription, organizationId);
-            Action act = () => new Column(name, order, boardId, board);
+            Action act = () => new Column(name, order, boardId);
 
             // Assert
             act.Should().Throw<ColumnException>()
@@ -57,14 +48,8 @@ namespace BoardService.Tests.Domain
             var name = new string('A', 101);
             var order = 1;
             var boardId = 1;
-
-            var boardName = "Project Board";
-            var boardDescription = "Board for managing project tasks";
-            var organizationId = 1;
-
             // Act
-            var board = new Board(boardName, boardDescription, organizationId);
-            Action act = () => new Column(name, order, boardId, board);
+            Action act = () => new Column(name, order, boardId);
 
             // Assert
             act.Should().Throw<ColumnException>()
