@@ -3,7 +3,7 @@ using BoardService.Domain.Exceptions;
 
 namespace BoardService.Domain.Entities
 {
-    public class Board
+    public sealed class Board
     {
         public int Id { get; private set; }
 
