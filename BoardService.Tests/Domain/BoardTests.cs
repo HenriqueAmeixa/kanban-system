@@ -55,5 +55,21 @@ namespace BoardService.Tests.Domain
             act.Should().Throw<BoardException>()
                .WithMessage("Board title must not exceed 100 characters.");
         }
+        [Fact]
+        public void Board_Should_Throw_OrganizationNotFoundException_When_OrganizationId_Is_Invalid()
+        {
+            // Arrange
+            string boardTitle = "Test Board";
+            string boardDescription = "This is a test board";
+            int invalidOrganizationId = 0;
+
+            // Act
+            Action act = () => new Board(boardTitle, boardDescription, invalidOrganizationId);
+
+            // Assert
+            act.Should().Throw<OrganizationNotFoundException>()
+               .WithMessage($"Organization with ID {invalidOrganizationId} not found.");
+        }
+
     }
 }

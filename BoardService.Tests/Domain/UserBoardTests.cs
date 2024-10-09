@@ -17,10 +17,9 @@ namespace BoardService.Tests.Domain
             var userId = 1;
             var boardId = 1;
             var isAdmin = true;
-            var board = new Board("Project Board", "Board for managing project tasks", 1);
             var user = new User();
             // Act
-            var userBoard = new UserBoard(userId, user, boardId, board, isAdmin);
+            var userBoard = new UserBoard(userId, boardId, isAdmin);
 
             // Assert
             userBoard.UserId.Should().Be(userId);
