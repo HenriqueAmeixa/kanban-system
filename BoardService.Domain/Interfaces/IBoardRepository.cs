@@ -2,7 +2,7 @@
 
 namespace BoardService.Domain.Interfaces
 {
-    internal interface IBoardRepository
+    public interface IBoardRepository
     {
         Task<Board> GetByIdAsync(int id);
         Task CreateAsync(Board board);

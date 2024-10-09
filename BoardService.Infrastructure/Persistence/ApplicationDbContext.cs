@@ -7,9 +7,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BoardService.Infrastructure.Persistence
 {
-    public class BoardDbContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
-        public BoardDbContext(DbContextOptions<BoardDbContext> options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
@@ -21,7 +21,7 @@ namespace BoardService.Infrastructure.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(BoardDbContext).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new BoardConfiguration());

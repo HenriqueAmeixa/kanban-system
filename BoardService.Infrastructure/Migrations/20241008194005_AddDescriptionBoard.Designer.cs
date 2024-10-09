@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BoardService.Infrastructure.Migrations
 {
-    [DbContext(typeof(BoardDbContext))]
+    [DbContext(typeof(Persistence.ApplicationDbContext))]
     [Migration("20241008194005_AddDescriptionBoard")]
     partial class AddDescriptionBoard
     {

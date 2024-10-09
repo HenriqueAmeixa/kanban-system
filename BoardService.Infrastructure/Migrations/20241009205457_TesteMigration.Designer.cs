@@ -11,9 +11,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BoardService.Infrastructure.Migrations
 {
-    [DbContext(typeof(Persistence.ApplicationDbContext))]
-    [Migration("20241007163303_createInitial")]
-    partial class createInitial
+    [DbContext(typeof(ApplicationDbContext))]
+    [Migration("20241009205457_TesteMigration")]
+    partial class TesteMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,6 +35,11 @@ namespace BoardService.Infrastructure.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Name")
                         .IsRequired()
