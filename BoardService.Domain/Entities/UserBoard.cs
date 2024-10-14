@@ -12,6 +12,9 @@ namespace BoardService.Domain.Entities
 
         public bool IsAdmin { get; private set; }
 
+        public DateTime CreatedAt { get; private set; }
+
+        public DateTime UpdatedAt { get; private set; }
         public UserBoard(int userId, int boardId, bool isAdmin)
         {
             SetUser(userId);

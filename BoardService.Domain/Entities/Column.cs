@@ -11,7 +11,10 @@ namespace BoardService.Domain.Entities
         public int Order { get; private set; } 
 
         public int BoardId { get; private set; } 
-        public Board Board { get; private set; } 
+        public Board Board { get; private set; }
+        public DateTime CreatedAt { get; private set; }
+
+        public DateTime UpdatedAt { get; private set; }
 
         public ICollection<KanbanTask> KanbanTasks { get; private set; } = new List<KanbanTask>();
 
