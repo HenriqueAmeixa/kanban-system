@@ -3,6 +3,7 @@ using BoardService.Infrastructure.Persistence;
 using BoardService.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace BoardService.Application.IoC
 {
@@ -18,7 +19,7 @@ namespace BoardService.Application.IoC
             services.AddScoped<IColumnRepository, ColumnRepository>();
             services.AddScoped<IKanbanTaskRepository, KanbanTaskRepository>();
             services.AddScoped<IUserBoardRepository, UserBoardRepository>();
-
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             return services;
         }
     }
