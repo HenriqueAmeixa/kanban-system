@@ -11,6 +11,9 @@ namespace BoardService.Domain.Entities
 
         public string PasswordHash { get; set; }  
 
-        public ICollection<UserBoard> UserBoards { get; set; } = new List<UserBoard>(); 
+        public ICollection<UserBoard> UserBoards { get; set; } = new List<UserBoard>();
+        public DateTime CreatedAt { get; private set; }
+
+        public DateTime UpdatedAt { get; private set; }
     }
 }

@@ -10,6 +10,9 @@ namespace BoardService.Domain.Entities
         public string Title { get; private set; }
         public string Description { get; private set; }
         public Column Column { get; private set; }
+        public DateTime CreatedAt { get; private set; }
+
+        public DateTime UpdatedAt { get; private set; }
 
 
         public KanbanTask(string title, string description, int columnId)
