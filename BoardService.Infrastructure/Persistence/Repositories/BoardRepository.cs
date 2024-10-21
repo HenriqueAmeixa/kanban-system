@@ -11,10 +11,11 @@ namespace BoardService.Infrastructure.Persistence.Repositories
         {
             _boardContext = context;
         }
-        public async Task CreateAsync(Board board)
+        public async Task<Board> CreateAsync(Board board)
         {
             _boardContext.Boards.Add(board);
             await _boardContext.SaveChangesAsync();
+            return board;
         }
 
         public async Task DeleteAsync(int id)

@@ -11,7 +11,6 @@ namespace BoardService.Application.IoC
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, string connectionString)
         {
-
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
@@ -20,6 +19,7 @@ namespace BoardService.Application.IoC
             services.AddScoped<IKanbanTaskRepository, KanbanTaskRepository>();
             services.AddScoped<IUserBoardRepository, UserBoardRepository>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
             return services;
         }
     }
